@@ -1,7 +1,11 @@
 <?php
 session_start();
+
 require_once ('app/routing/web.php');
-require_once('core/bundles/request/Request.php');
+require_once ('app/core/bundles/request/Request.php');
+require_once ('app/controllers/BaseController.php');
+
+//Foreach for require
 
 use app\routing\web;
 use app\core\bundles\request\Request;

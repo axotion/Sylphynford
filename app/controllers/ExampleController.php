@@ -1,7 +1,7 @@
 <?php
 namespace app\controllers;
 
-class ExampleController {
+class ExampleController extends BaseController {
 
     public function hello($request)
     {
