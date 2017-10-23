@@ -1,0 +1,22 @@
+{
+    "routes": {
+        "HelloController": [
+            {
+                "path": "/hello",
+                "controller": "ExampleController@hello"
+            }
+        ],
+        "WorldController": [
+            {
+                "path": "/world",
+                "controller": "ExampleController@world"
+            }
+        ],
+        "IndexController": [
+            {
+                "path": "/",
+                "controller": "ExampleController@index"
+            }
+        ]
+    }
+}
