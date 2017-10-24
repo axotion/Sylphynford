@@ -13,4 +13,16 @@ class BaseController implements IController {
         }
         include __DIR__ . '/../../../views/' .$view.'.php';
     }
+
+    public function validate($request, $data)
+    {
+
+    }
+
+    public function redirect($url) {
+
+    }
+
+
+
 }

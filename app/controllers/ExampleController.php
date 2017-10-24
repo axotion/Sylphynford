@@ -20,9 +20,9 @@ class ExampleController extends BaseController {
 
     public function index($request)
     {
-        $test = 1;
-        $test2 = 'mua';
-        $this->view('index', ['test'=> $test, 'test2' => $test2]);
+
+        $version = '0.1-alpha';
+        $this->view('index', ['version'=> $version]);
         return true;
     }
 
