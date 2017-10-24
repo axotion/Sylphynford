@@ -8,5 +8,16 @@ spl_autoload_register(function($class) {
 
 use app\core\bundles\request\Request;
 use app\routing\web;
+use app\core\bundles\ioc\IoC;
+
+IoC::init();
+
+//Move it to config
+$mainProvider = new \app\providers\MainProvider();
+$mainProvider->call();
+
+$test = IoC::resolve('test');
+$test->test();
+
 
 web::getController($_SERVER['REQUEST_URI'], new Request($_GET, $_POST, $_COOKIE, $_SESSION));
