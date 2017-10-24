@@ -20,7 +20,7 @@
         ],
         "SlugController": [
             {
-                "path" : "/test/[test]/",
+                "path" : "/test/[test]",
                 "controller" : "ExampleController@slug"
             }
         ]

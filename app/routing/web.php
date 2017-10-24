@@ -4,13 +4,11 @@ namespace app\routing;
 
 class web
 {
-
-
     public static function getController($path, $request)
     {
         $routing = json_decode(file_get_contents(realpath(__DIR__) . '/../../config/routing.json'));
 
-        $path = self::sanitizePath($path);
+        $path = self::getChecker($path);
 
         foreach ($routing as $route => $controllers) {
             [$slug, $route_path] = self::slugChecker($path, $controllers);
@@ -26,7 +24,7 @@ class web
         }
     }
 
-    protected static function sanitizePath($path)
+    protected static function getChecker($path)
     {
         if (strpos($path, '?') !== false) {
             return explode('?', $path)[0];

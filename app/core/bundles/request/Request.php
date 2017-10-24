@@ -17,14 +17,14 @@ class Request{
         $this->session = $session;
     }
 
-    public function query()
+    public function query($var = null)
     {
-        return $this->get;
+        return $var ? $this->get[$var] : $this->get;
     }
 
-    public function request()
+    public function request($var = null)
     {
-        return $this->post;
+        return $var ? $this->post[$var] : $this->post;
     }
     
     public function cookies()
