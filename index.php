@@ -1,9 +1,10 @@
 <?php
 session_start();
 
-require_once('app/routing/web.php');
-require_once('app/core/bundles/request/Request.php');
-require_once('app/controllers/BaseController.php');
+spl_autoload_register(function($class) {
+    $class = str_replace('\\', '/', $class);
+    require_once($class . '.php');
+});
 
 use app\core\bundles\request\Request;
 use app\routing\web;
