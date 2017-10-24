@@ -6,22 +6,23 @@ class web
 {
     public static function getController($path, $request)
     {
-        $routing = json_decode(file_get_contents(realpath(__DIR__) . '/../../config/routing.json'));
-
+        $controllers = json_decode(file_get_contents(realpath(__DIR__) . '/../../config/routing.json'));
         $path = self::getChecker($path);
 
-        foreach ($routing as $route => $controllers) {
-            [$slug, $route_path] = self::slugChecker($path, $controllers);
-            foreach ($controllers as $index => $attributes) {
-                $config_path = explode('/', $attributes[0]->path);
-                if ($route_path == $config_path[1]) {
-                    [$class, $method] = explode('@', $attributes[0]->controller);
-                    require_once(__DIR__ . '/../controllers/' . $class . '.php');
-                    $controller = "\\app\\controllers\\" . $class;
-                    (new $controller)->{$method}($request, $slug);
+        foreach ($controllers as $name => $controller) {
+
+            $slug = self::slugChecker($path, $controller[0]->path);
+            if ($controller[0]->path == $path || !empty($slug)) {
+                [$class, $method] = explode('@', $controller[0]->controller);
+                require_once((__DIR__ . '/../controllers/' . $class . '.php'));
+                $class = "\\app\\controllers\\" . $class;
+                if ((new $class)->{$method}($request, $slug)) {
+                    exit(0);
                 }
             }
         }
+        echo '404';
+        return false;
     }
 
     protected static function getChecker($path)
@@ -34,16 +35,16 @@ class web
 
     protected static function slugChecker($route_path, $routes)
     {
+        $routes = explode('^', $routes);
         $route_path = explode('/', $route_path);
-        $slug = null;
 
-        foreach ($routes as $route) {
-            $route = explode('/', $route[0]->path);
-            if ($route[1] == $route_path[1]) {
-                $slug = $route_path[2] ?? null;
+        if (count($routes) > 1) {
+
+            $routes = str_replace('/', '', $routes[0]);
+
+            if ($routes == $route_path[1]) {
+                return $route_path[2];
             }
         }
-
-        return [$slug, $route_path[1]];
     }
 }

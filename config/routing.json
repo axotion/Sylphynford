@@ -1,5 +1,4 @@
 {
-    "routes": {
         "HelloController": [
             {
                 "path": "/hello",
@@ -8,7 +7,7 @@
         ],
         "WorldController": [
             {
-                "path": "/world",
+                "path": "/world/me",
                 "controller": "ExampleController@world"
             }
         ],
@@ -20,9 +19,8 @@
         ],
         "SlugController": [
             {
-                "path" : "/test/[test]",
+                "path" : "/test/^slug",
                 "controller" : "ExampleController@slug"
             }
         ]
-    }
 }
