@@ -17,4 +17,9 @@ class ExampleController extends BaseController {
     {
         var_dump($request);
     }
+
+    public function slug($request, $slug)
+    {
+        echo $slug.'fds';
+    }
 }

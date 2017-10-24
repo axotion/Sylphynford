@@ -17,6 +17,12 @@
                 "path": "/",
                 "controller": "ExampleController@index"
             }
+        ],
+        "SlugController": [
+            {
+                "path" : "/test/[test]/",
+                "controller" : "ExampleController@slug"
+            }
         ]
     }
 }
