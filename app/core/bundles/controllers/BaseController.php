@@ -11,9 +11,6 @@ class BaseController implements IController {
         {
             $parameter[$key] = $value;
         }
-        //Open buffor for view. It will catch and execute view with our parameters. Then release content from buffor by echo
-        ob_start();
         include __DIR__ . '/../../../views/' .$view.'.php';
-        echo ob_get_clean();
     }
 }
