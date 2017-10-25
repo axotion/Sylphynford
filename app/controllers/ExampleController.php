@@ -2,19 +2,19 @@
 
 namespace app\controllers;
 
-use app\core\bundles\controllers\BaseController;
+use app\hearth\bundles\controllers\BaseController;
 
 class ExampleController extends BaseController {
 
     public function hello($request)
     {
-        echo 'hello';
+        // $this->redirect('/');
         return true;
     }
 
     public function world($request)
     {
-        echo 'world';
+        var_dump($this->container('test'));
         return true;
     }
 

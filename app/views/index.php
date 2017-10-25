@@ -4,11 +4,12 @@
     <center>
         <div id="welcome">
             <h1><span>Welcome to</span> Sylpnford</h1>
+            <i>The best nani-framework ever made </i><br>
         </div>
-
+        <img src="/sylph.png">
         <div id="status">
             <p>
-                Your application is now ready. <br>Version:
+                All right everyone! Let us play to our heart's content! <br>Version:
                 <code><?php echo $parameter['version']?></code>
             </p>
         </div>

@@ -6,19 +6,20 @@ spl_autoload_register(function($class) {
     require_once('../'.$class . '.php');
 });
 
-use app\core\bundles\request\Request;
-use app\routing\web;
-use app\core\bundles\ioc\IoC;
+use app\hearth\bundles\middleware\Middleware;
+use app\hearth\bundles\request\Request;
+use app\hearth\bundles\routing\web;
+use app\hearth\bundles\ioc\IoC;
+use app\providers\ServiceContainer;
 
-//
-//IoC::init();
-//
-////Move it to config
-//$mainProvider = new \app\providers\MainProvider();
-//$mainProvider->call();
-//
-//$test = IoC::resolve('test');
-//$test->test();
+IoC::init();
+
+$path = $_SERVER['REQUEST_URI'];
+$request = new Request($_GET, $_POST, $_COOKIE, $_SESSION);
+
+////Register services
+$mainProvider = new ServiceContainer();
+$mainProvider->register();
 
 
-web::getController($_SERVER['REQUEST_URI'], new Request($_GET, $_POST, $_COOKIE, $_SESSION));
+web::getController($path, $request, new Middleware(), $_SERVER['REQUEST_METHOD']);
