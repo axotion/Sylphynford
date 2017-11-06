@@ -2,11 +2,12 @@
 
 namespace app\providers;
 
-use app\core\bundles\ioc\IoC;
+use app\hearth\bundles\ioc\IoC;
 
-class MainProvider
+class ServiceContainer
 {
-    public function call() : void {
+    public function register() : void {
+
         IoC::bind('test', function ($app){
             return new class {
                 public function test()

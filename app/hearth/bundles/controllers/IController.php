@@ -1,5 +1,5 @@
 <?php
-namespace app\core\bundles\controllers;
+namespace app\hearth\bundles\controllers;
 
 
 interface IController

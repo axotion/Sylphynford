@@ -1,6 +1,6 @@
 <?php 
 
-namespace app\core\bundles\request;
+namespace app\hearth\bundles\request;
 
 class Request{
 

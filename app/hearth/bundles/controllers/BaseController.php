@@ -1,5 +1,7 @@
 <?php
-namespace app\core\bundles\controllers;
+namespace app\hearth\bundles\controllers;
+
+use app\hearth\bundles\ioc\IoC;
 
 class BaseController implements IController {
 
@@ -19,10 +21,11 @@ class BaseController implements IController {
 
     }
 
-    public function redirect($url) {
-
+    public function container($name) {
+        return IoC::resolve($name);
     }
 
-
-
+    public function redirect($url) {
+        header('Location:'.$url);
+    }
 }

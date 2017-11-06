@@ -1,5 +1,5 @@
 <?php
-namespace app\core\bundles\ioc;
+namespace app\hearth\bundles\ioc;
 
 class IoC{
     public static $services = [];
