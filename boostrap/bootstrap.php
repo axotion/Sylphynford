@@ -8,7 +8,7 @@ spl_autoload_register(function($class) {
 
 use app\hearth\bundles\middleware\Middleware;
 use app\hearth\bundles\request\Request;
-use app\hearth\bundles\routing\web;
+use app\hearth\bundles\routing\httpKernel;
 use app\hearth\bundles\ioc\IoC;
 use app\providers\ServiceContainer;
 
@@ -22,4 +22,4 @@ $mainProvider = new ServiceContainer();
 $mainProvider->register();
 
 
-web::getController($path, $request, new Middleware(), $_SERVER['REQUEST_METHOD']);
+httpKernel::getController($path, $request, new Middleware(), $_SERVER['REQUEST_METHOD']);

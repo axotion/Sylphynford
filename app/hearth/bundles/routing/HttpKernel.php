@@ -2,7 +2,7 @@
 
 namespace app\hearth\bundles\routing;
 
-class web
+class HttpKernel
 {
     /**
      * @param $path
@@ -23,7 +23,7 @@ class web
 
             if (($controller[0]->path == $path || !empty($slug)) && $controller[0]->method == $method) {
 
-                if(!empty($controller[0]->middleware)) {
+                if (!empty($controller[0]->middleware)) {
                     $middleware->call($controller[0]->middleware, $path, $request);
                 }
                 [$class, $method] = explode('@', $controller[0]->controller);
