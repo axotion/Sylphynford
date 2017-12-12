@@ -1,32 +1,35 @@
 {
-        "HelloController": [
-            {
-                "path": "/hello",
-                "controller": "ExampleController@hello",
-                "method" : "GET",
-                "middleware" : "CheckForNothing"
-
-            }
-        ],
-        "WorldController": [
-            {
-                "path": "/world/me",
-                "controller": "ExampleController@world",
-                "method" : "GET"
-            }
-        ],
-        "IndexController": [
-            {
-                "path": "/",
-                "controller": "ExampleController@index",
-                "method" : "GET"
-            }
-        ],
-        "SlugController": [
-            {
-                "path" : "/test/^slug",
-                "controller" : "ExampleController@slug",
-                 "method" : "GET"
-            }
-        ]
+  "SlugController": [
+    {
+      "path": "/test/",
+      "controller": "ExampleController@slug",
+      "method": "GET",
+      "slugs" : "true"
+    }
+  ],
+  "HelloController": [
+    {
+      "path": "/hello",
+      "controller": "ExampleController@hello",
+      "method": "GET",
+      "filter": "CheckForNothing",
+      "slugs" : "false"
+    }
+  ],
+  "WorldController": [
+    {
+      "path": "/world/me",
+      "controller": "ExampleController@world",
+      "method": "GET",
+      "slugs" : "false"
+    }
+  ],
+  "IndexController": [
+    {
+      "path": "/",
+      "controller": "ExampleController@index",
+      "method": "GET",
+      "slugs" : "false"
+    }
+  ]
 }

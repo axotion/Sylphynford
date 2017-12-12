@@ -1,8 +1,8 @@
 <?php
 
-namespace app\hearth\bundles\middleware;
+namespace app\hearth\bundles\filters;
 
-class Middleware
+class FilterManager
 {
     /**
      * @param $class
@@ -10,7 +10,7 @@ class Middleware
      * @param $request
      */
     public function call($class, $path, $request) {
-        $class = '\\app\middleware\\'.$class;
+        $class = '\\app\filters\\'.$class;
         (new $class)->handle($path, $request);
     }
 }

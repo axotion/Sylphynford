@@ -2,29 +2,31 @@
 
 namespace app\hearth\bundles\routing;
 
-class web
+class Http
 {
     /**
      * @param $path
      * @param $request
-     * @param $middleware
+     * @param $filter
      * @param $method
      * @return bool
+     * @internal param $middleware
      */
-    public static function getController($path, $request, $middleware, $method)
+    public static function getController($path, $request, $filter, $method)
     {
         $controllers = json_decode(file_get_contents(realpath(__DIR__) . '/../../../../config/routing.json'));
         $path = self::getChecker($path);
 
 
         foreach ($controllers as $name => $controller) {
-
-            $slug = self::slugChecker($path, $controller[0]->path);
-
-            if (($controller[0]->path == $path || !empty($slug)) && $controller[0]->method == $method) {
-
-                if(!empty($controller[0]->middleware)) {
-                    $middleware->call($controller[0]->middleware, $path, $request);
+            if ($controller[0]->slugs) {
+                $slug = self::slugChecker($path, $controller[0]->path);
+            } else {
+                $slug = false;
+            }
+            if (($controller[0]->path == $path || $slug) && $controller[0]->method == $method) {
+                if (!empty($controller[0]->filter)) {
+                    $filter->call($controller[0]->filter, $path, $request);
                 }
                 [$class, $method] = explode('@', $controller[0]->controller);
                 require_once((__DIR__ . '/../../../controllers/' . $class . '.php'));
@@ -57,16 +59,16 @@ class web
      */
     protected static function slugChecker($route_path, $routes)
     {
-        $routes = explode('^', $routes);
+        $slugs = explode('|', $routes);
         $route_path = explode('/', $route_path);
+        unset($route_path[0]);
 
-        if (count($routes) > 1) {
-
-            $routes = str_replace('/', '', $routes[0]);
-
-            if ($routes == $route_path[1]) {
-                return $route_path[2] ?? null;
-            }
+        //Check if base path exists. Then return array of slugs or false
+        if (strpos($slugs[0], $route_path[1]) !== false) {
+            //Delete base path from array of slugs
+            unset($route_path[1]);
+            return array_values($route_path);
         }
+        return false;
     }
 }

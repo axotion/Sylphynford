@@ -1,11 +1,11 @@
 <?php
 
-namespace app\middleware;
+namespace app\filters;
 
 class CheckForNothing
 {
     public function handle($path, $request)
     {
-        echo 'Hello from middleware';
+        echo 'Hello from filter';
     }
 }

@@ -26,9 +26,9 @@ class ExampleController extends BaseController {
         return true;
     }
 
-    public function slug($request, $slug)
+    public function slug($request, array $slugs)
     {
-        echo $slug;
+        var_dump($slugs);
         return true;
     }
 }
